@@ -1,130 +1,212 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- Bootstrap theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <title>How to create Firebase login and register?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+	<!-- Bootstrap theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<title>Login Digital Emporium</title>
 </head>
 <body>
 
 <div class="navbar navbar-default">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="https://www.shinerweb.com">Shinerweb Technologies</a>
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-    </button>
-  </div>
-  <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-           <li><a href="#" id="logout" style="display: none;">Log Out</a></li>
-      </ul>
-  </div>
+<div class="navbar-header">
+  <a class="navbar-brand" href="https://www.shinerweb.com">Digital Emporium Login</a>
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+  </button>
+</div>
+<div class="navbar-collapse collapse"  >
+    <ul class="nav navbar-nav navbar-right">
+         <li><a href="#" id="logout" style="display: none;">Log Out</a></li>
+    </ul>
+</div>
 </div>
 <br>
-<div class="container">  
+<div class="container">	
+  <form name="registration_form" id="registration_form" method="post" action="#" enctype="multipart/form-data" >
   <div class="row">
-    <div class="col-sm-4">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email">
-      </div>
-      
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
-      </div>
-      <button type="button" id="register" name="register" class="btn btn-success">Register Now</button>
-    </div>
-    <div class="col-sm-4">
-      <img src="firebase_auth.png">
-    </div>
-    <div class="col-sm-4">
-      <div class="form-group">
-        <label for="login_email">Email</label>
-        <input type="email" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
-      </div>
-      
-      <div class="form-group">
-        <label for="login_password">Password</label>
-        <input type="password" name="login_password" id="login_password" class="form-control" placeholder="Enter your password">
-      </div>
-      <button type="button" id="login" name="login" class="btn btn-success">Login</button>
-    </div>
-  </div>
+
+	<div class="col-sm-4">
+		<div class="form-group">
+	      <label for="email">Email</label>
+		  <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email">
+		</div>
+		
+		<div class="form-group">
+	      <label for="password" >Password</label>
+		  <input type="password" name="password" id="password" class="form-control"  placeholder="Enter your password">
+		</div>
+		<button type="button" id="register" name="register" class="btn btn-success">Register Now</button>
+	</div><!-- end col -->
+	</form>
+	<div class="col-sm-4">
+		<img src="firebase_auth.png">
+	</div>
+	<form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data" >
+	<div class="col-sm-4">
+		<div class="form-group">
+	      <label for="email">Email</label>
+		  <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
+		</div>
+		
+		<div class="form-group">
+	      <label for="password">Password</label>
+		  <input type="password" name="login_password" id="login_password" class="form-control"  placeholder="Enter your password">
+		</div>
+		<button type="button" id="login" name="login" class="btn btn-success">Login</button>
+	</div><!-- end col -->
+	
+  </div><!--  end row -->		
+  </form>
 </div>
 <br>
 <center>Developed by <a href="https://shinerweb.com/">Shinerweb</a></center>
 </body>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
-  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+	<script type="module">
+	  // Import the functions you need from the SDKs you need
+	  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+	  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+	  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+	  // TODO: Add SDKs for Firebase products that you want to use
+	  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyDFBTyCchKzTbQHQlNmJrfD8JdgxI5OCSU",
-    authDomain: "loginwebsite-59d78.firebaseapp.com",
-    projectId: "loginwebsite-59d78",
-    storageBucket: "loginwebsite-59d78.appspot.com",
-    messagingSenderId: "827664273837",
-    appId: "1:827664273837:web:c01c632ada25031d7c9124",
-    measurementId: "G-6MZ72Z8YP8"
-  };
+	  // Your web app's Firebase configuration
+	  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	  // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDFBTyCchKzTbQHQlNmJrfD8JdgxI5OCSU",
+  authDomain: "loginwebsite-59d78.firebaseapp.com",
+  databaseURL: "https://loginwebsite-59d78-default-rtdb.firebaseio.com",
+  projectId: "loginwebsite-59d78",
+  storageBucket: "loginwebsite-59d78.appspot.com",
+  messagingSenderId: "827664273837",
+  appId: "1:827664273837:web:c01c632ada25031d7c9124",
+  measurementId: "G-6MZ72Z8YP8"
+};
 
-  // Registration
-  document.getElementById("register").addEventListener("click", function() {
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        alert("Registration successful!");
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
+	  // Initialize Firebase
+	  const app = initializeApp(firebaseConfig);
+	  const analytics = getAnalytics(app);
+	  const auth = getAuth();
+	  console.log(app);
+
+	  
+
+	  //----- New Registration code start	  
+	  document.getElementById("register").addEventListener("click", function() {
+		  var email =  document.getElementById("email").value;
+		  var password = document.getElementById("password").value;
+		  //For new registration
+		  createUserWithEmailAndPassword(auth, email, password)
+		  .then((userCredential) => {
+		    // Signed in 
+		    const user = userCredential.user;
+		    console.log(user);
+		    alert("Registration successfully!!");
+		    // ...
+		  })
+		  .catch((error) => {
+		    const errorCode = error.code;
+		    const errorMessage = error.message;
+		    // ..
+		    console.log(errorMessage);
+		    alert(error);
+		  });		  		  
+	  });
+	  //----- End
+
+	  //----- Login code start	  
+	  document.getElementById("login").addEventListener("click", function() {
+		  var email =  document.getElementById("login_email").value;
+		  var password = document.getElementById("login_password").value;
+
+		  signInWithEmailAndPassword(auth, email, password)
+		  .then((userCredential) => {
+  // التسجيل/التسجيل ناجح
+  .then((userCredential) => {
+  // التسجيل/التسجيل ناجح
+  const user = userCredential.user;
+  alert("تم التسجيل بنجاح!");
+
+  // الآن قم بالبحث عن المستخدم في قاعدة البيانات
+  const userId = user.uid;
+  const database = firebase.database();
+  const usersRef = database.ref('users');
+
+  usersRef.child(userId).once('value', (snapshot) => {
+    if (snapshot.exists()) {
+      // المستخدم موجود في قاعدة البيانات، يمكن توجيهه إلى الصفحة المطلوبة
+      window.location.href = "https://egehiwh.github.io/Onlinestore/Digital-emporium-store.com.html";
+    } else {
+      // المستخدم غير موجود في قاعدة البيانات، قم بتوجيهه إلى الرابط الآخر مع رسالة
+      alert("أنت لست مشتركًا");
+      window.location.href = "https://wa.me/201026383327?text=%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D8%A5%D8%B4%D8%AA%D8%B1%D8%A7%D9%83";
+    }
   });
+})
+		    document.getElementById('logout').style.display = 'block';
+		    // ...
+		  })
+		 .catch((error) => {
+  const errorMessage = error.message;
+  alert("يرجى التحقق من البيانات مرة أخرى: " + errorMessage);
+});	  		  
+	  });
+	  //----- End
 
-  // Login
-  document.getElementById("login").addEventListener("click", function() {
-    var email = document.getElementById("login_email").value;
-    var password = document.getElementById("login_password").value;
+	  //----- Logout code start	  
+	  document.getElementById("logout").addEventListener("click", function() {
+		  signOut(auth).then(() => {
+			  // Sign-out successful.
+			  console.log('Sign-out successful.');
+			  alert('Sign-out successful.');
+			  document.getElementById('logout').style.display = 'none';
+			}).catch((error) => {
+			  // An error happened.
+			  console.log('An error happened.');
+			});		  		  
+	  });
+	  //----- End
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        alert(user.email + " Login successful!");
-        document.getElementById('logout').style.display = 'block';
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
-  });
+	</script>
+	<style>
+	    /* Add your custom CSS styles here */
+body {
+  background-color: #f2f2f2;
+}
 
-  // Logout
-  document.getElementById("logout").addEventListener("click", function() {
-    signOut(auth)
-      .then(() => {
-        alert("Sign-out successful.");
-        document.getElementById('logout').style.display = 'none';
-      })
-      .catch((error) => {
-        alert("An error occurred.");
-      });
-  });
-</script>
+.container {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn {
+  background-color: #337ab7;
+  color: #fff;
+}
+
+.btn:hover {
+  background-color: #23527c;
+}
+
+/* Add more custom styles as needed */
+	</style>
 </html>
