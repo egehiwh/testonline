@@ -70,7 +70,7 @@
 
 
 
-  // Login
+// Login
 document.getElementById("login").addEventListener("click", function() {
   var email = document.getElementById("login_email").value;
   var password = document.getElementById("login_password").value;
@@ -103,12 +103,6 @@ document.getElementById("login").addEventListener("click", function() {
       alert(errorMessage);
     });
 });
-	    
-	  .catch((error) => {
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
-  });
 
   // Logout
   document.getElementById("logout").addEventListener("click", function() {
