@@ -81,6 +81,27 @@
         alert(user.email + " Login successful!");
         document.getElementById('logout').style.display = 'block';
       })
+	  .then((userCredential) => {
+  // التسجيل/التسجيل ناجح
+  const user = userCredential.user;
+  alert("تم التسجيل بنجاح!");
+
+  // الآن قم بالبحث عن المستخدم في قاعدة البيانات
+  const userId = user.uid;
+  const database = firebase.database();
+  const usersRef = database.ref('users');
+
+  usersRef.child(userId).once('value', (snapshot) => {
+    if (snapshot.exists()) {
+      // المستخدم موجود في قاعدة البيانات، يمكن توجيهه إلى الصفحة المطلوبة
+      window.location.href = "صفحة_التوجيه_بعد_النجاح.html";
+    } else {
+      // المستخدم غير موجود في قاعدة البيانات، قم بتوجيهه إلى الرابط الآخر مع رسالة
+      alert("أنت لست مشتركًا");
+      window.location.href = "الرابط_الآخر.html";
+    }
+  });
+})
 	    
 	  .catch((error) => {
         const errorMessage = error.message;
