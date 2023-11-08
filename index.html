@@ -174,7 +174,6 @@ const analytics = getAnalytics(app);
                            </p>
                         </center>
                         <p class="card-text mb-2">sign-in to your account</p>
-                        <form method="post" action="https://Zexo.ro/index.php" class="orvx-login-form mt-2" id="loginform">
                            <div class="mb-1">
                               <label for="user_reg" class="form-label">Username</label>
                               <input type="text" class="form-control valid" id="user_reg" name="username" placeholder="username" aria-describedby="user_reg" tabindex="1" aria-invalid="false">									
@@ -238,6 +237,18 @@ const analytics = getAnalytics(app);
         // إظهار الرسالة
         messageElement.style.display = "block";
     });
+</script>
+<script>
+    // التحقق من حالة تسجيل الدخول باستخدام Firebase
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // المستخدم مسجل الدخول، يمكنك إعادته إلى https://Zexo.ro/index.php
+        window.location.href = "https://Zexo.ro/index.php";
+    } else {
+        // المستخدم ليس مسجل الدخول، يمكنك توجيهه إلى صفحة تسجيل الدخول
+        window.location.href = "صفحة تسجيل الدخول";
+    }
+});
 </script>
       <script>
          function toggle(id, pp) {
