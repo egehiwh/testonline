@@ -84,21 +84,22 @@ document.getElementById("login").addEventListener("click", function() {
 
     // الآن يجب وضع الجزء المتعلق بعملية التسجيل هنا
     // للتحقق من وجود المستخدم في قاعدة البيانات وتوجيهه وفقًا للحالة
-    const userId = user.uid;
-    const database = firebase.database();
-    const usersRef = database.ref('users');
+    // الآن يجب وضع الجزء المتعلق بعملية التسجيل هنا
+// للتحقق من وجود المستخدم في قاعدة البيانات وتوجيهه وفقًا للحالة
+const userId = user.uid;
+const database = getDatabase();
+const usersRef = ref(database, 'users/' + userId);
 
-    usersRef.child(userId).once('value', (snapshot) => {
-      if (snapshot.exists()) {
-        // المستخدم موجود في قاعدة البيانات، يمكن توجيهه إلى الصفحة المطلوبة
-        window.location.href = "https://youtube.com";
-      } else {
-        // المستخدم غير موجود في قاعدة البيانات، قم بتوجيهه إلى الرابط الآخر مع رسالة
-        alert("أنت لست مشتركًا");
-        window.location.href = "https://facebook.com";
-      }
-    });
-  })
+get(usersRef).then((snapshot) => {
+  if (snapshot.exists()) {
+    // المستخدم موجود في قاعدة البيانات، يمكن توجيهه إلى الصفحة المطلوبة
+    window.location.href = "https://youtube.com";
+  } else {
+    // المستخدم غير موجود في قاعدة البيانات، قم بتوجيهه إلى الرابط الآخر مع رسالة
+    alert("أنت لست مشتركًا");
+    window.location.href = "https://facebook.com";
+  }
+});
     .catch((error) => {
       const errorMessage = error.message;
       alert(errorMessage);
