@@ -110,27 +110,6 @@
         document.getElementById('logout').style.display = 'block';
       })
 	    
-     .then((userCredential) => {
-  // التسجيل/التسجيل ناجح
-  const user = userCredential.user;
-  alert("تم التسجيل بنجاح!");
-
-  // الآن قم بالبحث عن المستخدم في قاعدة البيانات
-  const userId = user.uid;
-  const database = firebase.database();
-  const usersRef = database.ref('users');
-
-  usersRef.child(userId).once('value', (snapshot) => {
-    if (snapshot.exists()) {
-      // المستخدم موجود في قاعدة البيانات، يمكن توجيهه إلى الصفحة المطلوبة
-      window.location.href = "https://egehiwh.github.io/Onlinestore/Digital-emporium-store.com.html";
-    } else {
-      // المستخدم غير موجود في قاعدة البيانات، قم بتوجيهه إلى الرابط الآخر مع رسالة
-      alert("أنت لست مشتركًا");
-      window.location.href = "https://wa.me/201026383327?text=%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%A7%D9%84%D8%A5%D8%B4%D8%AA%D8%B1%D8%A7%D9%83";
-    }
-  });
-})
 	  .catch((error) => {
         const errorMessage = error.message;
         alert(errorMessage);
