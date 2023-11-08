@@ -92,11 +92,11 @@ document.getElementById("login").addEventListener("click", function() {
       usersRef.child(userId).once('value', (snapshot) => {
         if (snapshot.exists()) {
           // المستخدم موجود في قاعدة البيانات، يمكن توجيهه إلى الصفحة المطلوبة
-          window.location.href = "صفحة_التوجيه_بعد_النجاح.html";
+          window.location.href = "https://youtube.com";
         } else {
           // المستخدم غير موجود في قاعدة البيانات، قم بتوجيهه إلى الرابط الآخر مع رسالة
           alert("أنت لست مشتركًا");
-          window.location.href = "الرابط_الآخر.html";
+          window.location.href = "https://facebook.com";
         }
       });
     })
