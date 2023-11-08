@@ -1,155 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
-	<!-- Bootstrap theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	<title>How to create Firebase login and register?</title>
+  <title>صفحة تسجيل الدخول والتسجيل</title>
 </head>
 <body>
-
-<div class="navbar navbar-default">
-<div class="navbar-header">
-  <a class="navbar-brand" href="https://www.shinerweb.com">Shinerweb Technologies</a>
-  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-  </button>
-</div>
-<div class="navbar-collapse collapse"  >
-    <ul class="nav navbar-nav navbar-right">
-         <li><a href="#" id="logout" style="display: none;">Log Out</a></li>
-    </ul>
-</div>
-</div>
-<br>
-<div class="container">	
-  <form name="registration_form" id="registration_form" method="post" action="#" enctype="multipart/form-data" >
-  <div class="row">
-
-	<div class="col-sm-4">
-		<div class="form-group">
-	      <label for="email">Email</label>
-		  <input type="text" name="email" id="email" class="form-control" placeholder="Enter your email">
-		</div>
-		
-		<div class="form-group">
-	      <label for="password" >Password</label>
-		  <input type="password" name="password" id="password" class="form-control"  placeholder="Enter your password">
-		</div>
-		<button type="button" id="register" name="register" class="btn btn-success">Register Now</button>
-	</div><!-- end col -->
-	</form>
-	<div class="col-sm-4">
-		<img src="firebase_auth.png">
-	</div>
-	<form name="login_form" id="login_form" method="post" action="#" enctype="multipart/form-data" >
-	<div class="col-sm-4">
-		<div class="form-group">
-	      <label for="email">Email</label>
-		  <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
-		</div>
-		
-		<div class="form-group">
-	      <label for="password">Password</label>
-		  <input type="password" name="login_password" id="login_password" class="form-control"  placeholder="Enter your password">
-		</div>
-		<button type="button" id="login" name="login" class="btn btn-success">Login</button>
-	</div><!-- end col -->
-	
-  </div><!--  end row -->		
+  <h1>تسجيل الدخول</h1>
+  <form id="loginForm">
+    <label for="email">البريد الإلكتروني:</label>
+    <input type="email" id="email" required><br>
+    <label for="password">كلمة المرور:</label>
+    <input type="password" id="password" required><br>
+    <button type="submit">تسجيل الدخول</button>
   </form>
-</div>
-<br>
-<center>Developed by <a href="https://shinerweb.com/">Shinerweb</a></center>
-</body>
-<script>
-	// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDl7ZSqgZIsGSD-mkbodDOQPYKep0Ghetw",
-  authDomain: "aitools-442ca.firebaseapp.com",
-  databaseURL: "https://aitools-442ca-default-rtdb.firebaseio.com",
-  projectId: "aitools-442ca",
-  storageBucket: "aitools-442ca.appspot.com",
-  messagingSenderId: "953335623553",
-  appId: "1:953335623553:web:fa2a1950c05b97543a8280",
-  measurementId: "G-7H4QYM8VDD"
+  <h1>التسجيل</h1>
+  <form id="registerForm">
+    <label for="registerEmail">البريد الإلكتروني:</label>
+    <input type="email" id="registerEmail" required><br>
+    <label for="registerPassword">كلمة المرور:</label>
+    <input type="password" id="registerPassword" required><br>
+    <button type="submit">التسجيل</button>
+  </form>
+
+  <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-database.js"></script>
+
+  <script>
+    // Your Firebase configuration
+   const firebaseConfig = {
+  apiKey: "AIzaSyDFBTyCchKzTbQHQlNmJrfD8JdgxI5OCSU",
+  authDomain: "loginwebsite-59d78.firebaseapp.com",
+  databaseURL: "https://loginwebsite-59d78-default-rtdb.firebaseio.com",
+  projectId: "loginwebsite-59d78",
+  storageBucket: "loginwebsite-59d78.appspot.com",
+  messagingSenderId: "827664273837",
+  appId: "1:827664273837:web:c01c632ada25031d7c9124",
+  measurementId: "G-6MZ72Z8YP8"
 };
+    // Get a reference to the authentication service
+    const auth = getAuth();
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-	  
+    // Get references to the login and registration forms
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
 
-	  //----- New Registration code start	  
-	  document.getElementById("register").addEventListener("click", function() {
-		  var email =  document.getElementById("email").value;
-		  var password = document.getElementById("password").value;
-		  //For new registration
-		  createUserWithEmailAndPassword(auth, email, password)
-		  .then((userCredential) => {
-		    // Signed in 
-		    const user = userCredential.user;
-		    console.log(user);
-		    alert("Registration successfully!!");
-		    // ...
-		  })
-		  .catch((error) => {
-		    const errorCode = error.code;
-		    const errorMessage = error.message;
-		    // ..
-		    console.log(errorMessage);
-		    alert(error);
-		  });		  		  
-	  });
-	  //----- End
+    // Add an event listener to the login form
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // User successfully logged in
+          console.log('User logged in:', userCredential.user);
+        })
+        .catch((error) => {
+          // An error occurred
+          console.error('Login error:', error.message);
+        });
+    });
 
-	  //----- Login code start	  
-	  document.getElementById("login").addEventListener("click", function() {
-		  var email =  document.getElementById("login_email").value;
-		  var password = document.getElementById("login_password").value;
-
-		  signInWithEmailAndPassword(auth, email, password)
-		  .then((userCredential) => {
-		    // Signed in 
-		    const user = userCredential.user;
-		    console.log(user);
-		    alert(user.email+" Login successfully!!!");
-		    document.getElementById('logout').style.display = 'block';
-		    // ...
-		  })
-		  .catch((error) => {
-		    const errorCode = error.code;
-		    const errorMessage = error.message;
-		    console.log(errorMessage);
-		    alert(errorMessage);
-		  });		  		  
-	  });
-	  //----- End
-
-	  //----- Logout code start	  
-	  document.getElementById("logout").addEventListener("click", function() {
-		  signOut(auth).then(() => {
-			  // Sign-out successful.
-			  console.log('Sign-out successful.');
-			  alert('Sign-out successful.');
-			  document.getElementById('logout').style.display = 'none';
-			}).catch((error) => {
-			  // An error happened.
-			  console.log('An error happened.');
-			});		  		  
-	  });
-	  //----- End
-	</script>
+    // Add an event listener to the registration form
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          // User successfully registered
+          console.log('User registered:', userCredential.user);
+        })
+        .catch((error) => {
+          // An error occurred
+          console.error('Registration error:', error.message);
+        });
+    });
+  </script>
+</body>
 </html>
