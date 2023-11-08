@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",function(){var t;document.getElementById("wp-tutor_qna_text_editor-wrap")&&((t=tinyMCEPreInit.mceInit.tutor_qna_text_editor).plugins="".concat(t.plugins,", codesample"),t.toolbar1="".concat(t.toolbar1,", codesample"),tinymce.init(t))});
