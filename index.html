@@ -276,14 +276,8 @@ gtag("config", "G-3VX5XDZLJF");
     <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-app.js"></script>
     <script>
-     // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDFBTyCchKzTbQHQlNmJrfD8JdgxI5OCSU",
   authDomain: "loginwebsite-59d78.firebaseapp.com",
@@ -299,18 +293,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
             if (user) {
-                // المستخدم مسجل الدخول، قم بتوجيهه إلى https://Zexo.ro/index.php
                 window.location.href = "https://Zexo.ro/index.php";
             }
         });
 
-        // دالة للتحقق من النموذج والتوجيه
+
         function checkAndRedirect() {
-            // يمكنك إجراء التحقق من النموذج هنا
-            // إذا كانت البيانات صحيحة، يمكنك استدعاء:
+       
             // window.location.href = "https://Zexo.ro/index.php";
 
-            // إذا كانت البيانات غير صحيحة، يمكنك استدعاء:
             // window.location.href = "صفحة أخرى";
         }
     </script>
@@ -324,7 +315,7 @@ const analytics = getAnalytics(app);
 </div>
             <div class="form-group">
                 <label for="password">password</label>
-                <input type="text" id="user" name="user" class="form-control" required>
+                <input type="text" id="password" name="password" class="form-control" required>
             </div>
         <button type="submit" class="btn btn-primary">إرسال</button>
     </form>
